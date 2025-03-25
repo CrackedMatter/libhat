@@ -26,7 +26,7 @@ option(LIBHAT_HINT_X86_64 "Enables support for the x86_64 scan hint, requires a 
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 #    set_source_files_properties(src/arch/x86/AVX2.cpp PROPERTIES COMPILE_FLAGS "/arch:AVX2")
 #    set_source_files_properties(src/arch/x86/AVX512.cpp PROPERTIES COMPILE_FLAGS "/arch:AVX512")
-elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang" AND NOT CMAKE_ANDROID_ARCH_ABI STREQUAL "arm64-v8a")
     set_source_files_properties(src/arch/x86/SSE.cpp PROPERTIES COMPILE_FLAGS "-msse4.1")
     set_source_files_properties(src/arch/x86/AVX2.cpp PROPERTIES COMPILE_FLAGS "-mavx -mavx2 -mbmi")
     set_source_files_properties(src/arch/x86/AVX512.cpp PROPERTIES COMPILE_FLAGS "-mavx512f -mavx512bw -mbmi")
